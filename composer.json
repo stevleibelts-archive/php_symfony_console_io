@@ -1,0 +1,32 @@
+{
+    "name": "net_bazzline/php_symfony_console_io",
+    "type": "library",
+    "description": "symfony console command io copied from composer",
+    "keywords": ["php", "bazzline", "symfony", "console", "io"],
+    "homepage": "https://github.com/stevleibelt/php_symfony_console_io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "stev leibelt",
+            "email": "artodeto@arcor.de",
+            "homepage": "http://artodeto.bazzline.net",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/console": "2.2.*@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "mikey179/vfsStream": "dev-master",
+	    "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Net\\Bazzline\\Symfony\\Console\\IO": "source/",
+            "Test\\Net\\Bazzline\\Symfony\\Console\\IO": "test/"
+        }
+    }
+}

@@ -1,7 +1,5 @@
 <?php
 /**
- * A bad copycat of https://github.com/composer/composer/blob/master/src/Composer/IO/ConsoleIO.php
- *
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-30
  */
@@ -26,21 +24,21 @@ class ConsoleIO implements IOInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-30
      */
-    $helperSet;
+    private $helperSet;
 
     /**
      * @var OutputInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-30
      */
-    $input;
+    private $input;
 
     /**
      * @var OutputInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-30
      */
-    $output;
+    private $output;
 
     /**
      * @param InputInterface $input
@@ -55,5 +53,38 @@ class ConsoleIO implements IOInterface
         $this->helperSet = $helperSet;
         $this->input = $input;
         $this->output = $output;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function ask($question, $default = null)
+    {
+        return $this
+            ->helperSet
+            ->get('dialog')
+            ->ask($this->output, $question, $default);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function askConfirmation($question, $default = true)
+    {
+        return $this
+            ->helperSet
+            ->get('dialog')
+            ->askConfirmation($this->output, $question, $default);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function askAndValidate($question, $validator, $attempts = false, $default = null)
+    {
+        return $this
+            ->helperSet
+            ->get('dialog')
+            ->askAndValidate($this->output, $question, $validator, $attempts, $default);
     }
 }
