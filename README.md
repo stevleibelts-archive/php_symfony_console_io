@@ -9,4 +9,5 @@ The project starts as a copycate of the composer ConsoleIO.
 
 ## References
 
+https://github.com/jenswiese/phpteda/blob/master/src/Phpteda/CLI/IO/ConsoleIO.php
 https://github.com/composer/composer/blob/master/src/Composer/IO/ConsoleIO.php
