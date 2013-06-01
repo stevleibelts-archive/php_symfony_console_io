@@ -87,4 +87,95 @@ class ConsoleIO implements IOInterface
             ->get('dialog')
             ->askAndValidate($this->output, $question, $validator, $attempts, $default);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function askWithMultipleAnswers($question)
+    {
+        // TODO: Implement askWithMultipleAnswers() method.
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function askWithSuggestions($question, array $suggestions, $default = null)
+    {
+        // TODO: Implement askWithSuggestions() method.
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function askChoice($question, array $options, $allowEmptyChoice = true, $default = null)
+    {
+        // TODO: Implement askChoice() method.
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArgument($name)
+    {
+        // TODO: Implement getArgument() method.
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setArgument($name, $value)
+    {
+        // TODO: Implement setArgument() method.
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function write($message, $numberOfNewLines = 1)
+    {
+        $this->output->write($message);
+        $this->writeNewLine();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function writeComment($message, $numberOfNewLines = 1)
+    {
+        $this->write('<comment>' . (string) $message . '</comment>', $numberOfNewLines);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function writeError($message, $numberOfNewLines = 1)
+    {
+        $this->write('<error>' . (string) $message . '</error>', $numberOfNewLines);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function writeInfo($message, $numberOfNewLines = 1)
+    {
+        $this->write('<info>' . (string) $message . '</info>', $numberOfNewLines);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function writeNewLine($numberOfNewLines = 1)
+    {
+        for ($iterator = 0; $iterator < $numberOfNewLines; $iterator++) {
+            $this->write('');
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function writeQuestion($question, $numberOfNewLines = 1)
+    {
+        $this->write('<question>' . (string) $question . '</question>', $numberOfNewLines);
+    }
 }
