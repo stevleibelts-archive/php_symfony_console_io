@@ -63,7 +63,7 @@ class ConsoleIO implements IOInterface
         return $this
             ->helperSet
             ->get('dialog')
-            ->ask($this->output, $question, $default);
+            ->ask($this->output, $this->encloseAsQuestion($question, $default), $default);
     }
 
     /**
@@ -74,7 +74,7 @@ class ConsoleIO implements IOInterface
         return $this
             ->helperSet
             ->get('dialog')
-            ->askConfirmation($this->output, $question, $default);
+            ->askConfirmation($this->output, $this->encloseAsQuestion($question, $default), $default);
     }
 
     /**
@@ -85,7 +85,7 @@ class ConsoleIO implements IOInterface
         return $this
             ->helperSet
             ->get('dialog')
-            ->askAndValidate($this->output, $question, $validator, $attempts, $default);
+            ->askAndValidate($this->output, $this->encloseAsQuestion($question, $default), $validator, $attempts, $default);
     }
 
     /**
@@ -116,14 +116,10 @@ class ConsoleIO implements IOInterface
      */
     public function askWithSuggestions($question, array $suggestions, $default = null)
     {
-        $choiceInfo = is_null($default) ? '' : ' [ ' . $default . ']';
-
-        $question = '<question>' . $question . '</question>' . $choiceInfo . ': ';
-
         return $this
             ->helperSet
             ->get('dialog')
-            ->ask($this->output, $question, $default, $suggestions);
+            ->ask($this->output, $this->encloseAsQuestion($question, $default), $default, $suggestions);
     }
 
     /**
@@ -132,7 +128,7 @@ class ConsoleIO implements IOInterface
      */
     public function askChoice($question, array $options, $allowEmptyChoice = true, $default = null)
     {
-        $this->write($question);
+        $this->write($this->encloseAsQuestion($question, $default));
 
         $optionValues = array_values($options);
 
@@ -195,7 +191,7 @@ class ConsoleIO implements IOInterface
      */
     public function writeComment($message, $numberOfNewLines = 1)
     {
-        $this->write('<comment>' . $message . '</comment>', $numberOfNewLines);
+        $this->write($this->encloseAsComment($message), $numberOfNewLines);
     }
 
     /**
@@ -203,7 +199,7 @@ class ConsoleIO implements IOInterface
      */
     public function writeError($message, $numberOfNewLines = 1)
     {
-        $this->write('<error>' . $message . '</error>', $numberOfNewLines);
+        $this->write($this->encloseAsError($message), $numberOfNewLines);
     }
 
     /**
@@ -211,7 +207,7 @@ class ConsoleIO implements IOInterface
      */
     public function writeInfo($message, $numberOfNewLines = 1)
     {
-        $this->write('<info>' . $message . '</info>', $numberOfNewLines);
+        $this->write($this->encloseAsInfo($message), $numberOfNewLines);
     }
 
     /**
@@ -229,6 +225,61 @@ class ConsoleIO implements IOInterface
      */
     public function writeQuestion($question, $numberOfNewLines = 1)
     {
-        $this->write('<question>' . $question . '</question>', $numberOfNewLines);
+        $this->write($this->encloseAsQuestion($question), $numberOfNewLines);
+    }
+
+    /**
+     * Encloses provided string with question tags
+     *
+     * @param string $string - the string tagged as question
+     * @param null|string $default - optional default choice
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-01
+     */
+    protected function encloseAsQuestion($string, $default = null)
+    {
+        $choiceInfo = is_null($default) ? '' : ' [' . $default . ']';
+
+        return '<question' . $string . '</question>' . $choiceInfo . ': ';
+    }
+
+    /**
+     * Encloses provided string with comment tags
+     *
+     * @param string $string - the string tagged as comment
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-01
+     */
+    protected function encloseAsComment($string)
+    {
+        return '<comment>' . $string . '</comment>';
+    }
+
+    /**
+     * Encloses provided string with error tags
+     *
+     * @param string $string - the string tagged as error
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-01
+     */
+    protected function encloseAsError($string)
+    {
+        return '<error>' . $string . '</error>';
+    }
+
+    /**
+     * Encloses provided string with info tags
+     *
+     * @param string $string - the string tagged as info
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-01
+     */
+    protected function encloseAsInfo($string)
+    {
+        return '<info>' . $string . '</info>';
     }
 }
