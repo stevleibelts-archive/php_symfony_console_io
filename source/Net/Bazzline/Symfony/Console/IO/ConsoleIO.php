@@ -93,7 +93,22 @@ class ConsoleIO implements IOInterface
      */
     public function askWithMultipleAnswers($question)
     {
-        // TODO: Implement askWithMultipleAnswers() method.
+        $this->writeQuestion($question . ':');
+
+        $values = array();
+
+        while (true) {
+            $answer = $this
+                ->helperSet
+                ->get('dialog')
+                ->ask($this->output, '> ');
+            if (is_null($answer)) {
+                break;
+            }
+            $values[] = $answer;
+        }
+
+        return $values;
     }
 
     /**
@@ -101,15 +116,53 @@ class ConsoleIO implements IOInterface
      */
     public function askWithSuggestions($question, array $suggestions, $default = null)
     {
-        // TODO: Implement askWithSuggestions() method.
+        $choiceInfo = is_null($default) ? '' : ' [ ' . $default . ']';
+
+        $question = '<question>' . $question . '</question>' . $choiceInfo . ': ';
+
+        return $this
+            ->helperSet
+            ->get('dialog')
+            ->ask($this->output, $question, $default, $suggestions);
     }
 
     /**
      * {@inheritDoc}
+     * @todo add translation
      */
     public function askChoice($question, array $options, $allowEmptyChoice = true, $default = null)
     {
-        // TODO: Implement askChoice() method.
+        $this->write($question);
+
+        $optionValues = array_values($options);
+
+        foreach ($optionValues as $key => $optionQuestion) {
+            $this->write('[' . ($key+1) . ']' . $optionQuestion);               //+1 because normal people prefers 1 over 0 as first option
+        }
+
+        $validator = function ($choosenValue) use ($optionValues, $allowEmptyChoice, $default) {
+            $isValidValue = isset($optionValues[$choosenValue-1]);
+            $isAllowedEmpty = is_null($choosenValue) && $allowEmptyChoice;
+
+            if ($isValidValue) {
+                return $choosenValue;
+            } elseif ($isAllowedEmpty) {
+                return $default;
+            }
+
+            throw new InputException('Invalid value (' . $choosenValue . ') provided.');
+        };
+
+        $message = 'Choose' . ($allowEmptyChoice ? ' (Hit enter for no choice)' : '');
+
+        $answer = $this->askAndValidate($message, $validator, false, $default);
+
+        if (!is_null($answer)) {
+            $optionRealValues = array_keys($options);
+            $answer = $optionRealValues[$answer-1];
+        }
+
+        return $answer;
     }
 
     /**
@@ -142,7 +195,7 @@ class ConsoleIO implements IOInterface
      */
     public function writeComment($message, $numberOfNewLines = 1)
     {
-        $this->write('<comment>' . (string) $message . '</comment>', $numberOfNewLines);
+        $this->write('<comment>' . $message . '</comment>', $numberOfNewLines);
     }
 
     /**
@@ -150,7 +203,7 @@ class ConsoleIO implements IOInterface
      */
     public function writeError($message, $numberOfNewLines = 1)
     {
-        $this->write('<error>' . (string) $message . '</error>', $numberOfNewLines);
+        $this->write('<error>' . $message . '</error>', $numberOfNewLines);
     }
 
     /**
@@ -158,7 +211,7 @@ class ConsoleIO implements IOInterface
      */
     public function writeInfo($message, $numberOfNewLines = 1)
     {
-        $this->write('<info>' . (string) $message . '</info>', $numberOfNewLines);
+        $this->write('<info>' . $message . '</info>', $numberOfNewLines);
     }
 
     /**
@@ -176,6 +229,6 @@ class ConsoleIO implements IOInterface
      */
     public function writeQuestion($question, $numberOfNewLines = 1)
     {
-        $this->write('<question>' . (string) $question . '</question>', $numberOfNewLines);
+        $this->write('<question>' . $question . '</question>', $numberOfNewLines);
     }
 }

@@ -81,6 +81,7 @@ interface IOInterface
      * @param null $default - default answer if no is given
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
+     * @throws InputException
      * @since 2013-06-01
      */
     public function askChoice($question, array $options, $allowEmptyChoice = true, $default = null);
