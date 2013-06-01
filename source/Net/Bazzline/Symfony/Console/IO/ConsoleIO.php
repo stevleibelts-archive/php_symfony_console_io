@@ -117,7 +117,7 @@ class ConsoleIO implements IOInterface
      */
     public function getArgument($name)
     {
-        // TODO: Implement getArgument() method.
+        return $this->input->getArgument($name);
     }
 
     /**
@@ -125,7 +125,7 @@ class ConsoleIO implements IOInterface
      */
     public function setArgument($name, $value)
     {
-        // TODO: Implement setArgument() method.
+        $this->input->setArgument($name, $value);
     }
 
     /**
