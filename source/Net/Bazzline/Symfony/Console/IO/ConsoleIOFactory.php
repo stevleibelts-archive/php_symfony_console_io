@@ -52,7 +52,7 @@ class ConsoleIOFactory
      */
     public static function buildDefault(InputInterface $input, OutputInterface $output, HelperSet $helperSet)
     {
-        $factory = new ConsoleIOFactory();
+        $factory = new self();
 
         $factory->setHelperSet($helperSet);
         $factory->setInput($input);
