@@ -107,6 +107,48 @@ interface IOInterface
     public function setArgument($name, $value);
 
     /**
+     * Validates if argument exists
+     *
+     * @param string $name - the name of the argument
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-06
+     */
+    public function hasArgument($name);
+
+    /**
+     * Retrieves an option by the name
+     *
+     * @param string $name - the name of the option
+     * @return mixed - the return value
+     * @return IOInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-06
+     */
+    public function getOption($name);
+
+    /**
+     * Sets a option with a given value
+     *
+     * @param string $name - the name of the option
+     * @param mixed $value - the value
+     * @return IOInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-06
+     */
+    public function setOption($name, $value);
+
+    /**
+     * Validates if option exists
+     *
+     * @param string $name - the name of the option
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-06
+     */
+    public function hasOption($name);
+
+    /**
      * Write a message
      *
      * @param string $message - the message to write
