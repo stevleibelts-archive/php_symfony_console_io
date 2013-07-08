@@ -4,7 +4,7 @@
     "description": "symfony console command io copied from composer",
     "keywords": ["php", "bazzline", "symfony", "console", "io"],
     "homepage": "https://github.com/stevleibelt/php_symfony_console_io",
-    "license": "GPLv3",
+    "license": "LGPLv3",
     "authors": [
         {
             "name": "stev leibelt",
