@@ -56,7 +56,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function ask($question, $default = null)
     {
@@ -67,7 +67,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function askConfirmation($question, $default = true)
     {
@@ -78,7 +78,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function askAndValidate($question, $validator, $attempts = false, $default = null)
     {
@@ -89,7 +89,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function askWithMultipleAnswers($question)
     {
@@ -112,7 +112,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function askWithSuggestions($question, array $suggestions, $default = null)
     {
@@ -123,7 +123,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      * @todo add translation
      */
     public function askChoice($question, array $options, $allowEmptyChoice = true, $default = null)
@@ -162,7 +162,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getArgument($name)
     {
@@ -170,7 +170,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setArgument($name, $value)
     {
@@ -180,7 +180,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function hasArgument($name)
     {
@@ -188,7 +188,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOption($name)
     {
@@ -196,7 +196,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setOption($name, $value)
     {
@@ -206,7 +206,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function hasOption($name)
     {
@@ -214,7 +214,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function write($message, $numberOfNewLines = 1)
     {
@@ -223,7 +223,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function writeComment($message, $numberOfNewLines = 1)
     {
@@ -231,7 +231,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function writeError($message, $numberOfNewLines = 1)
     {
@@ -239,7 +239,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function writeInfo($message, $numberOfNewLines = 1)
     {
@@ -247,7 +247,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function writeNewLine($numberOfNewLines = 1)
     {
@@ -257,7 +257,7 @@ class ConsoleIO implements IOInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function writeQuestion($question, $numberOfNewLines = 1)
     {
